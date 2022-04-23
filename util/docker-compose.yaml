@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  # docker-compose run -it --rm node-util
+  node-util:
+    container_name: node-util
+    build: ./
+    volumes:
+      - ./:/app
+    stdin_open: true
+    tty: true
+

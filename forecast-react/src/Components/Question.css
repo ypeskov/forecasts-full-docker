@@ -1,0 +1,34 @@
+.question-title {
+    font-size: 2rem;
+}
+
+.question-input {
+    background-color: rgb(143, 196, 196);
+    border-radius: 20px;
+    padding-top: 1rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.question-input input {
+    width: 100%;
+    display: inline-block;
+    height: 2rem;
+    font-size: 1.3rem;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.question-button {
+    margin: auto;
+    padding: 1rem;
+    width: 80%;
+    min-height: 2rem;
+    display: inline-block;
+    font-size: 2rem;
+    background-color: rgb(110, 133, 134);
+    border-radius: 20px;
+}

@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: postgres
+    build: ./postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=Qwerty123
+    healthcheck:
+      test: 'psql -U divination forecasts -c "SELECT 1"'
+      timeout: 10s
+      start_period: 3s
+
+
+  api:
+    build: ./fastify
+    container_name: runes-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - /app/node_modules
+      - ./fastify:/app
+    env_file:
+      - ./fastify/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+  
+  client:
+    build: ./forecast-react
+    container_name: runes-client
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - ./forecast-react:/app
+    env_file:
+      - ./forecast-react/.env.local
+  

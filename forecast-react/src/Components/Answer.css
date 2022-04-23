@@ -1,0 +1,29 @@
+.forecast-item {
+    background-color: rgb(185, 197, 197);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 1rem 0;
+}
+
+.forecast-rune-position, .forecast-rune-title {
+    font-weight: bold;
+}
+
+.forecast-subheading {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.forecast-rune-info {
+    padding: 20px;
+    font-size: 1.4rem;
+}
+
+.forecast-info {
+    background-color: rgb(143, 196, 196);
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 1.4rem;
+}
