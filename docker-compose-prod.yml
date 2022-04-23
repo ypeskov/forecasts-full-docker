@@ -10,8 +10,8 @@ services:
       - POSTGRES_PASSWORD=Qwerty123
     healthcheck:
       test: 'psql -U divination forecasts -c "SELECT 1"'
-      timeout: 10s
-      start_period: 3s
+      timeout: 30s
+      start_period: 10s
 
 
   api:
