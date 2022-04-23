@@ -1,6 +1,6 @@
 const app = async function (fastify, options) {
   fastify.register(require('fastify-cors'), {
-    origin: true
+    origin: false
   });
 
   fastify.register(require('fastify-knexjs'), {
