@@ -11,7 +11,7 @@ services:
     healthcheck:
       test: 'psql -U divination forecasts -c "SELECT 1"'
       timeout: 30s
-      start_period: 10s
+      start_period: 30s
 
 
   api:
