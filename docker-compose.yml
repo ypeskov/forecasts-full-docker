@@ -10,9 +10,10 @@ services:
       - POSTGRES_PASSWORD=Qwerty123
     healthcheck:
       test: 'psql -U divination forecasts -c "SELECT 1"'
-      timeout: 30s
-      start_period: 30s
-
+      timeout: 10s
+      interval: 5s
+      start_period: 10s
+      retries: 5
 
   api:
     build: ./fastify
