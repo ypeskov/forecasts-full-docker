@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   postgres:
-    container_name: postgres
-    image: ypeskov/postgres
+    container_name: runes-postgres
+    image: runes_postgres
     ports:
       - "5432:5432"
     environment:
@@ -17,7 +17,7 @@ services:
 
 
   api:
-    image: ypeskov/runes_api
+    image: runes_api
     container_name: runes-api
     ports:
       - "8000:8000"
@@ -28,7 +28,7 @@ services:
         condition: service_healthy
   
   client:
-    image: ypeskov/runes_client
+    image: runes_client
     container_name: runes-client
     ports:
       - "3000:3000"

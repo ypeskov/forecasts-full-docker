@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   postgres:
-    container_name: postgres
+    container_name: runes_postgres
     build: 
       context: ./postgres
     ports:
@@ -31,7 +31,8 @@ services:
         condition: service_healthy
   
   client:
-    build: ./forecast-react
+    build:
+      context: ./forecast-react
     container_name: runes-client
     ports:
       - "3000:3000"
