@@ -24,8 +24,6 @@ services:
     volumes:
       - /app/node_modules
       - ./fastify:/app
-    env_file:
-      - ./fastify/.env
     depends_on:
       postgres:
         condition: service_healthy
@@ -39,6 +37,4 @@ services:
     volumes:
       - /app/node_modules
       - ./forecast-react:/app
-    env_file:
-      - ./forecast-react/.env.local
   
