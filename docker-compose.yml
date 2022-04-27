@@ -36,7 +36,7 @@ services:
       - "8000:8000"
     volumes:
       - ./forecast-backend:/app
-      - /app/node_modules
+      # - /app/node_modules
       - /app/dist
     # depends_on:
     #   postgres:
