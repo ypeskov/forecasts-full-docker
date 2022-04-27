@@ -16,17 +16,31 @@ services:
       start_period: 10s
       retries: 5
 
+  # api:
+  #   build: ./fastify
+  #   container_name: runes-api
+  #   ports:
+  #     - "8000:8000"
+  #   volumes:
+  #     - /app/node_modules
+  #     - ./fastify:/app
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+
   api:
-    build: ./fastify
+    build: 
+      context: ./forecast-backend
     container_name: runes-api
     ports:
       - "8000:8000"
     volumes:
+      - ./forecast-backend:/app
       - /app/node_modules
-      - ./fastify:/app
-    depends_on:
-      postgres:
-        condition: service_healthy
+      - /app/dist
+    # depends_on:
+    #   postgres:
+    #     condition: service_healthy
   
   client:
     build:
