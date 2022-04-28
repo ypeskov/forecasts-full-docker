@@ -13,7 +13,7 @@ const Answer = () => {
   useEffect(() => {
     async function getAnswer() {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/forecast/question`,
+        `${process.env.REACT_APP_API_URL}/forecasts/question`,
         {
           method: "POST",
           headers: {

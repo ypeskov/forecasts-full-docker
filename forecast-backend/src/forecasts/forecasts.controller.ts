@@ -1,22 +1,22 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ForecastDto } from './Dto/Forecast.dto';
-import { QuestionDto } from './Dto/questionDto';
+import { ForecastDto } from './Dto/forecast.dto'; 
+import { QuestionDto } from './Dto/question.dto';
 
-import { ForecastsService } from './forecasts.service';
+import { ForecastsService, RuneAnswer } from './forecasts.service';
 
 @Controller('forecasts')
 export class ForecastsController {
-  constructor(private readonly forecastSerivce: ForecastsService) {}
+  constructor(private readonly forecastService: ForecastsService) {}
 
   @Get('/')
   async getForecasts() {
-    const forecasts: ForecastDto[] =await this.forecastSerivce.getAllForecasts();
+    const forecasts: ForecastDto[] =await this.forecastService.getAllForecasts();
 
     return forecasts;
   }
 
   @Post('/question')
-  addNewQuestion(@Body() question: QuestionDto) {
-    console.log(question);
+  async addNewQuestion(@Body() question: QuestionDto): Promise<RuneAnswer[]> {
+    return await this.forecastService.getForecast(question.forecast_id);
   }
 }
