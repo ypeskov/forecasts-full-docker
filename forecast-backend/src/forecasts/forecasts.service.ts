@@ -11,13 +11,23 @@ export class ForecastsService {
     return await this.db({ d: 'forecasts' }).select();
   }
 
-  async getForecast(divinationId): Promise<RuneAnswer[]> {
+  async getForecast(divinationId: number, question: string, ip: string, origin: string): Promise<RuneAnswer[]> {
     const numberOfRunes: number = this.getNumberOfRunes(divinationId);
     const randomRuneOrders: number[] = this.getRandomOrders(numberOfRunes);
     const runes: RuneWithTranslation[] = await this.retrieveRunesFromDB(randomRuneOrders);
     const answers: RuneAnswer[] = this.getAnswers(runes);
+    this.saveAnswer(answers, question, ip, origin);
 
     return answers;
+  }
+
+  async saveAnswer(answers: RuneAnswer[], question: string, ip: string, origin: string): Promise<void> {
+    await this.db('answers').insert({
+      question,
+      ip,
+      origin,
+      answer: JSON.stringify(answers)
+    });
   }
 
   getNumberOfRunes(divinationId): number {
@@ -45,14 +55,14 @@ export class ForecastsService {
     }
 
     return orders
-      .map(value => ({value, sort: Math.random()}))
+      .map(value => ({ value, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
-      .map(({value}) => value)
+      .map(({ value }) => value)
       .slice(-numberOfRunes);
   }
 
   async retrieveRunesFromDB(ordersList): Promise<RuneWithTranslation[]> {
-    return this.db({r: 'runes'})
+    return this.db({ r: 'runes' })
       .select({
         order: 'r.order',
         has_inverted: 'r.has_inverted',
@@ -66,7 +76,7 @@ export class ForecastsService {
   }
 
   getAnswers(runes: RuneWithTranslation[]): RuneAnswer[] {
-    const answers: RuneAnswer[] =  runes.map(rune => {
+    const answers: RuneAnswer[] = runes.map(rune => {
       const temp_answer: RuneAnswer = {
         'title': rune.title,
         description: rune.description,
@@ -80,7 +90,7 @@ export class ForecastsService {
           temp_answer.position = 'Inverted position';
         }
       }
-    
+
       return temp_answer;
     });
 
@@ -103,3 +113,4 @@ export interface RuneAnswer {
   forecast: string;
   position: string;
 }
+
