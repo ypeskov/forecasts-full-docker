@@ -14,7 +14,7 @@ const Forecasts = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(process.env.REACT_APP_API_URL);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/forecasts`);
       setForecasts(await response.json());
     }
     fetchData();

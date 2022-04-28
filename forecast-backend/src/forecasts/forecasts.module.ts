@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ForecastsController } from './forecasts/forecasts.controller';
+import { ForecastsController } from './forecasts.controller';
+import { ForecastsService } from './forecasts.service';
 
 @Module({
-  controllers: [ForecastsController]
+  controllers: [ForecastsController],
+  providers: [ForecastsService]
 })
 export class ForecastsModule {}
